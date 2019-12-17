@@ -13,6 +13,7 @@ class UsersController extends Controller
         $users = User::all();
 
         return view('/admin/users/index')->with('users', $users);
+        
     }
 
 

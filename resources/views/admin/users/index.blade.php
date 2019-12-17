@@ -83,9 +83,16 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
+                <div class="card-body">
+                    <h2>All Users</h2>
 
-                <div class="links">
-                    Testing...
+                    <div class="links">
+
+                        @foreach ($users as $user)
+                            {{ $user->name }} / {{ $user->email }} <br/>            
+                        @endforeach
+
+                    </div>
                 </div>
             </div>
         </div>
