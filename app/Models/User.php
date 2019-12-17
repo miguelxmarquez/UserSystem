@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 // use Caffeinated\Shinobi\Concerns\HasRolesAndPermissions;
 // use Cviebrock\EloquentSluggable\Sluggable;
 
-class User extends Model
+class User extends Authenticatable
 {
     // use Notifiable;
     // use HasRolesAndPermissions;
