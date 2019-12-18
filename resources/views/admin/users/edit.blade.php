@@ -26,16 +26,14 @@
                         <div class="form-row">
                           <div class="form-group col-md-6">
                             <label for="inputCity">Password</label>
-                            <input type="password" class="form-control" id="password" value="{{$user->pass}}>
-                          </div>
-                          <div class="form-group col-md-4">
-                            
+                            <input type="password" class="form-control" id="password" value="{{$user->pass}}">
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="inputState">Role</label>
 
+                            <label for="inputState">Role</label>
                            
-                            {{Form::select('size', array(
+                            {{Form::select('size', 
+                                  array(
                                           'master' => 'Master', 
                                           'study' => 'Study', 
                                           'sub-study' => 'Sub-study', 
@@ -47,7 +45,10 @@
                                           'design' => 'Design',
                                           'photos' => 'Photos',
                                           'shop' => 'Shop',
-                                          ), $user->type, array('class' => 'form-control'))}}
+                                        ), 
+                                  $user->type, array('class' => 'form-control'))
+                            }}
+
                           </div>
                         </div>
                         <div class="form-group">
@@ -60,6 +61,8 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ URL::previous() }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
+
                       </form>
                    </div>
                </div>

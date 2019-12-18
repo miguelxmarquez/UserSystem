@@ -42,7 +42,8 @@
                             </tr>
                         @endforeach
                     </table> 
-                    <a href="{{ URL::previous() }}" class="btn btn-danger col-md-2"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
+                    {{-- <a href="{{ URL::previous() }}" class="btn btn-danger col-md-2"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a> --}}
+                    <ul class="pagination justify-content-center">{{ $users->links() }}</ul>
 
                     
                 </div>
