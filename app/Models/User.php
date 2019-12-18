@@ -10,20 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    // use Notifiable;
-    // use HasRolesAndPermissions;
-    // use Sluggable;
-
-    // public function sluggable(){// el slug para url amigables tienen vista al usuario visitante todos los slug
-    //     return [
-    //         'slug' => [
-    //             'source' => 'name'
-    //         ]
-    //     ];
-    // }
-
-
-
+  
     protected $fillable = [
         'id', 'name', 'email', 'password', 'status', 'type'
     ];
@@ -44,5 +31,10 @@ class User extends Authenticatable
     // public function company(){
     //     return $this->hasOne('App\Models\Company');
     // }
+
+    public function roles()//1 a m
+    {
+        return $this->hasMany('App\Models\Role');
+    }
 
 }
