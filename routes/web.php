@@ -14,12 +14,26 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin/users', 'UsersController@index')->name('admin.users');
-Route::get('/admin/users/new', 'UsersController@create')->name('admin.users.new');
-Route::get('/admin/users/store', 'UsersController@store')->name('admin.users.store');
-Route::get('/admin/users/edit/{id}', 'UsersController@edit')->name('admin.users.edit');
-Route::get('/admin/users/destroy/{id}', 'UsersController@destroy')->name('admin.users.destroy');
-Route::get('/admin/users/profile/{id}', 'UsersController@show')->name('admin.users.show');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+
+    Route::group(['middleware' => 'admin'], function(){
+    Route::resource('users','UsersController');
+
+    Route::get('users/destroy/{id}',[
+            'uses' => 'UsersController@destroy',
+            'as'   => 'admin.users.destroy'
+        ]);
+    });
+
+});
+
+// Route::get('/admin/users', 'UsersController@index')->name('admin.users');
+// Route::get('/admin/users/new', 'UsersController@create')->name('admin.users.new');
+// Route::post('/admin/users', 'UsersController@store')->name('admin.users.store');
+// Route::get('/admin/users/edit/{id}', 'UsersController@edit')->name('admin.users.edit');
+// Route::get('/admin/users/destroy/{id}', 'UsersController@destroy')->name('admin.users.destroy');
+// Route::get('/admin/users/profile/{id}', 'UsersController@show')->name('admin.users.show');
 
 Route::get('/admin/roles', 'RolesController@index')->name('admin.roles');
 Route::get('/admin/roles/new', 'RolesController@create')->name('admin.roles.new');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller{
     
@@ -42,13 +44,13 @@ class UsersController extends Controller{
        return redirect()->route('admin.users');
     }
 
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
         $user->save();
-        Flash::success("Se ha guardado ".$user->name." de forma exitosa!");
-        return redirect()->route('admin.users');
+        //Flash::success("Se ha guardado ".$user->name." de forma exitosa!");
+        return redirect()->route('users.index')->with('key', 'You have done successfully');
     }
 
     public function destroy($id)
