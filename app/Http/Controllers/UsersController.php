@@ -38,7 +38,8 @@ class UsersController extends Controller{
        $user = User::find($id);
        $user->fill($request->all());
        $user->save();
-       return redirect()->route('admin.users.index');
+       Flash::success("Se ha actualizado ".$user->name." de forma exitosa!");
+       return redirect()->route('admin.users');
     }
 
     public function store(UserRequest $request)
@@ -47,7 +48,7 @@ class UsersController extends Controller{
         $user->password = bcrypt($request->password);
         $user->save();
         Flash::success("Se ha guardado ".$user->name." de forma exitosa!");
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users');
     }
 
     public function destroy($id)
