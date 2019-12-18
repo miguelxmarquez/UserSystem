@@ -7,10 +7,15 @@
                 <div class="card-header">{{ __('All Users') }}</div>
 
                 <div class="card-body">
+                    {{-- <div class="card">
+                        <div class="card-header">
+                            <a href="{{ route('admin.users.new') }}" class="btn btn-success"><span class="glyphicon glyphicon-wrench" aria-hidden="true">New</a>
+                        </div>
+                    </div> --}}
+                <br/>
                     
-                    
-                    <table class="table table-striped table-bordered">
-                        <thead>
+                    <table class="table table-responsive table-bordered table-striped">
+                        <thead class="thead-dark ">
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
@@ -28,13 +33,17 @@
                                 <td>{{ $user->status }}</td>
                                 <td>{{ $user->type }}</td>
                                 <td>
-                                    <a href="{{ route('admin.users.edit', 'id='.$user->id) }}" class="btn btn-warning" onclick="return confirm('seguro que deseas Modificarlo?')"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Edit</a>
-                                    <a href="{{ route('admin.users.destroy', 'id='.$user->id) }}" class="btn btn-danger" onclick="return confirm('seguro que deseas Eliminarlo?')"> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Delete</a>
-                                </td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                        <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Show</a>
+                                        <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-light" onclick="return confirm('seguro que deseas Modificarlo?')"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Edit</a>
+                                        <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger" onclick="return confirm('seguro que deseas Eliminarlo?')"> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Delete</a>
+                                      </div>
+                                    </td>
                             </tr>
                         @endforeach
                     </table> 
-                    
+                    <a href="{{ URL::previous() }}" class="btn btn-danger col-md-2"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
+
                     
                 </div>
             </div>

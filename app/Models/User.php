@@ -25,13 +25,9 @@ class User extends Authenticatable
     
 
 
-
+    
     /*****************  Relationships  *****************/
     
-    // public function company(){
-    //     return $this->hasOne('App\Models\Company');
-    // }
-
     public function roles()//1 a m
     {
         return $this->hasMany('App\Models\Role');

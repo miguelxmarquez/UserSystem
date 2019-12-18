@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Create New User') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('create') }}">
+                    <form method="POST" action="{{ route('admin.users') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -66,6 +66,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <a href="{{ URL::previous() }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
+
+                                
                             </div>
                         </div>
                     </form>

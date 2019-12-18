@@ -13,13 +13,8 @@ class UsersController extends Controller{
     }
 
     public function index(){
-
         $users = User::orderBy('id','ASC')->paginate(2);
-        return View('admin.users.index')->with('users', $users);
-
-
-        // $users = User::all();
-        // return view('admin.user.index')->with('users', $users);  
+        return View('admin.users.index')->with('users', $users); 
     }
 
     public function create(){
@@ -38,12 +33,11 @@ class UsersController extends Controller{
         return view('admin.users.edit')->with('user', $user);
     }
 
-    public function update(Request $request, $id) // TODO NO GUARDA administrador UNIFICAR CON EL TOKEN DE LA BASE DE DATOS
+    public function update(Request $request, $id) 
     {
        $user = User::find($id);
        $user->fill($request->all());
        $user->save();
-       Flash::warning('El usuario '. $user->type.' ha sido modificado exitosamente!');
        return redirect()->route('admin.users.index');
     }
 
