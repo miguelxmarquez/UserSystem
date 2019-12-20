@@ -9,7 +9,12 @@
                 <div class="card-body col-md-auto table-responsive " >
                         
                     <div class="clearfix">
-                    <a href="{{ route('users.create') }}" class="btn btn-success float-left"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Add New User</a>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+
+                            <a href="{{ route('users.create') }}" class="btn btn-success float-left"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Add New User</a>
+                            </div>
+                        </div>
                     </div>
 
                     <table class="table table-bordered table-hover col-*-*">
@@ -33,8 +38,8 @@
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="User List">
                                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Show</a>
-                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-light" onclick="return confirm('seguro que deseas Modificarlo?')"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Edit</a>
-                                        <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger" onclick="return confirm('seguro que deseas Eliminarlo?')"> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Delete</a>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-light"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Edit</a>
+                                        <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger" onclick="return confirm('seguro que deseas Eliminarlo?')"> <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Delete</a>
                                       </div>
                                     </td>
                             </tr>

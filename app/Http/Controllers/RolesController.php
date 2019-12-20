@@ -24,13 +24,13 @@ class RolesController extends Controller{
     public function show($id)
     {
           $role = Role::findOrFail($id);
-          return view('admin.roles.profile', ['role' => $role]);
+          return view('roles.profile', ['role' => $role]);
     }
 
     public function edit($id)
     {
         $role = Role::find($id);
-        return view('admin.roles.edit')->with('role', $role);
+        return view('roles.edit')->with('role', $role);
     }
 
     public function update(Request $request, $id) 
@@ -39,16 +39,16 @@ class RolesController extends Controller{
        $role->fill($request->all());
        $role->save();
        Flash::success("Se ha actualizado ".$role->name." de forma exitosa!");
-       return redirect()->route('admin.roles');
+       return redirect()->route('roles');
     }
 
-    public function store(roleRequest $request)
+    public function store(Request $request)
     {
-        $role = new Role($request->all());
-        $role->password = bcrypt($request->password);
+        $role = new Role($request->all());// formatea los datos de la variable $request con all()
+         //dd($user);
         $role->save();
-        Flash::success("Se ha guardado ".$role->name." de forma exitosa!");
-        return redirect()->route('admin.roles');
+        // //Flash::success("Se ha guardado ".$roles->name." de forma exitosa!");
+        return redirect()->route('roles.index')->with('key', 'You have done successfully');
     }
 
     public function destroy($id)

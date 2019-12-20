@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
@@ -20,45 +21,54 @@ class UsersController extends Controller{
     }
 
     public function create(){
-        return view('admin.users.new');  
+        $roles = Role::all();
+
+        return view('admin.users.new')->with([
+            'roles' => $roles
+         ]);  
     }
 
-    public function show($id)
-    {
+    public function show($id){
           $user = User::findOrFail($id);
           return view('admin.users.profile', ['user' => $user]);
     }
 
-    public function edit($id)
-    {
+    public function edit($id){
         $user = User::find($id);
-        return view('admin.users.edit')->with('user', $user);
+        return view('admin.users.edit', ['user' => $user]);
     }
 
-    public function update(Request $request, $id) 
-    {
-       $user = User::find($id);
-       $user->fill($request->all());
-       $user->save();
-       Flash::success("Se ha actualizado ".$user->name." de forma exitosa!");
-       return redirect()->route('admin.users');
+    public function update(Request $request, User $user){
+        
+        $data = $request->all();
+        //dd($data);
+        dd($data);
+        
+        // $user->save();
+        // $user->name()->update(['name' => 'Hardik']);
+
+
+        // Flash::warning('El usuario '. $user->type.' ha sido modificado de forma exitosa!');
+        return redirect()->route('users.index');
     }
 
-    public function store(Request $request)
-    {
-        $user = new User($request->all());
+    public function store(Request $request){
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->type = $request->type;
+        $user->status = $request->status;
         $user->password = bcrypt($request->password);
         $user->save();
         //Flash::success("Se ha guardado ".$user->name." de forma exitosa!");
         return redirect()->route('users.index')->with('key', 'You have done successfully');
     }
 
-    public function destroy($id)
-    {
-        $user = User::find($id);
+    public function destroy($id){
+        $user = User::findorfail($id);
         $user->delete();
-        Flash::error('El usuario'. $user->name.'ha sido eliminado exitosamente!');
-        return redirect()->route('admin.users.index');
+        //Flash::error('El usuario'. $user->name.'ha sido eliminado exitosamente!');
+        return redirect()->route('users.index');
     }
 
 

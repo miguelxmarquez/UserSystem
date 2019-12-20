@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Usuario '. $user->name )
+@section('title', 'Editar Usuario '. $user->name)
 
 @section('content')
 
@@ -15,49 +15,57 @@
                       <form>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" value="{{$user->name}}" disabled>
                           </div>
                           <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                            <label for="inputPassword4">Email</label>
+                            <input type="email" class="form-control" id="email" value="{{$user->email}}" disabled>
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="inputAddress">Address</label>
-                          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                        </div>
-                        <div class="form-group">
-                          <label for="inputAddress2">Address 2</label>
-                          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" value="{{$user->password}}" disabled>
                           </div>
-                          <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
-                              <option selected>Choose...</option>
-                              <option>...</option>
-                            </select>
+                          <div class="form-group col-md-6">
+
+                            <label for="disabledSelect">Role</label>
+                            {{Form::select('type', 
+                                  array(
+                                          'master' => 'Master', 
+                                          'study' => 'Study', 
+                                          'sub-study' => 'Sub-study', 
+                                          'admin' => 'Admin', 
+                                          'manager' => 'Manager',
+                                          'accounts' => 'Accounts',
+                                          'monitor' => 'Monitor',
+                                          'model' => 'Model',
+                                          'design' => 'Design',
+                                          'photos' => 'Photos',
+                                          'shop' => 'Shop',
+                                        ), 
+                                  $user->type, array('class' => 'form-control', 'disabled'))
+                            }}
                           </div>
-                          <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
+                          <div class="form-group col-md-6">
+
+                          <label for="disabledSelect">Status</label>
+                            {{Form::select('type', 
+                                  array(
+                                          '1' => 'Activo',
+                                          '0' => 'Inactivo',
+                                        ), 
+                                  $user->status, array('class' => 'form-control', 'disabled'))
+                            }}
                           </div>
+
                         </div>
-                        <div class="form-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                              Check me out
-                            </label>
-                          </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                      </form>
+
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary float-right"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Edit</a>
+                        <a href="{{ URL::previous() }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
+
+                        </form>
                    </div>
                </div>
            </div>

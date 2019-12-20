@@ -60,7 +60,7 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                    {{Form::select('size', 
+                                    {{Form::select('type', 
                                           array(
                                                   '' => 'Choose...', 
                                                   'master' => 'Master', 
@@ -77,13 +77,32 @@
                                                 ), 
                                           '', array('class' => 'form-control form-group col-md-6'))
                                     }}
+                            </div>
+
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+                            <div class="col-md-6">
+                                    {{Form::select('status', 
+                                          array(
+                                                  '1' => 'Active', 
+                                                  '0' => 'Inactive',
+                                                ), 
+                                          '', array('class' => 'form-control form-group col-md-6'))
+                                    }}
         
-                                  </div>                           
+                            </div>
+                            
+                            {{-- @foreach ($roles as $role)
+                                <div class="form-check">
+                                <input type="checkbox" name="roles[]" value="{{ $role->id }}">
+                                <label>{{ $role->name }}</label>
+                                </div>
+                            @endforeach --}}
+
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary float-right">
                                     {{ __('Register') }}
                                 </button>
                                 <a href="{{ URL::previous() }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>                                

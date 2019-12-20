@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Usuario '. $user->name )
+{{-- @section('title', 'Editar Usuario '. $user->name) --}}
 
 @section('content')
 
@@ -12,27 +12,35 @@
               <div class="card-header">Edit User</div>
                   <div class="card-body">
 
-                      <form>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" value="{{$user->name}}">
-                          </div>
-                          <div class="form-group col-md-6">
-                            <label for="inputPassword4">Email</label>
-                            <input type="email" class="form-control" id="email" value="{{$user->email}}">
-                          </div>
-                        </div>
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                            <label for="inputCity">Password</label>
-                            <input type="password" class="form-control" id="password" value="{{$user->pass}}">
-                          </div>
-                          <div class="form-group col-md-6">
+                    {{ Form::open( $user, ['action' => ['UsersController@update', $user->id],'method' => 'PUT']) }}
 
-                            <label for="inputState">Role</label>
-                           
-                            {{Form::select('size', 
+                        @csrf
+                        {{ method_field('PUT') }}
+
+                        <div class="form-row">
+
+                          <div class="form-group col-md-6">
+                            {{ Form::label('name','Name') }}
+                            {{ Form::text('name', $user->name, ['class'=> 'form-control', 'placeholder'=> 'Name', 'required']) }}
+                          </div>
+
+                          <div class="form-group col-md-6">
+                            {{ Form::label('email','Email') }}
+                            {{ Form::text('email', $user->email, ['class'=> 'form-control', 'placeholder'=> 'Email Address', 'required']) }}
+                          </div>
+                         
+                          <div class="form-group col-md-6">
+                            {{ Form::label('password','Password') }}
+                            {{ Form::password('password', $user->password, ['class'=> 'form-control', 'placeholder'=> 'password Address', 'required']) }}
+                          </div>
+                         
+                        </div>
+
+                        <div class="form-row">
+
+                          <div class="form-group col-md-6">
+                            {{ Form::label('type','Type') }}
+                            {{Form::select('type', 
                                   array(
                                           'master' => 'Master', 
                                           'study' => 'Study', 
@@ -45,25 +53,26 @@
                                           'design' => 'Design',
                                           'photos' => 'Photos',
                                           'shop' => 'Shop',
-                                        ), 
-                                  $user->type, array('class' => 'form-control'))
+                                        ), $user->type, array('class' => 'form-control'))
                             }}
-
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                              Only Read
-                            </label>
-                          </div>
-                        </div>
 
-                        <button type="submit" class="btn btn-primary">Update</button>
+                          <div class="form-group col-md-6">
+                            <label for="type">Status</label>
+                            {{Form::select('status', 
+                                  array(
+                                          '1' => 'Active',
+                                          '0' => 'Inactive',
+                                        ), $user->type, array('class' => 'form-control'))
+                            }}
+                          </div>
+                          
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary float-right">Update</button>
                         <a href="{{ URL::previous() }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
 
-                      </form>
+                    {{ Form::close() }}
                    </div>
                </div>
            </div>

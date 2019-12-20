@@ -17,9 +17,9 @@ class Role extends Model
 
     /*****************  Relationships  *****************/
 
-    public function users()//1 a m
+    public function users()//m a m
     {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User');
     }
 
     

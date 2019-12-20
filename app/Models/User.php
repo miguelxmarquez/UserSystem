@@ -28,9 +28,9 @@ class User extends Authenticatable
     
     /*****************  Relationships  *****************/
     
-    public function roles()//1 a m
+    public function roles()//m a m
     {
-        return $this->hasMany('App\Models\Role');
+        return $this->belongsToMany('App\Models\Role');
     }
 
 }
