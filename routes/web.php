@@ -26,7 +26,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         ]);
     });
 
-});
+    // Route::get('users/{id}/update',[
+    //         'uses' => 'UsersController@update',
+    //         'as'   => 'admin.users.update'
+    //     ]);
+     });
+
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 

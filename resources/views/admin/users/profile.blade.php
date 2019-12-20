@@ -53,8 +53,8 @@
                           <label for="disabledSelect">Status</label>
                             {{Form::select('type', 
                                   array(
-                                          '1' => 'Activo',
-                                          '0' => 'Inactivo',
+                                          '1' => 'Active',
+                                          '0' => 'Inactive',
                                         ), 
                                   $user->status, array('class' => 'form-control', 'disabled'))
                             }}

@@ -33,8 +33,15 @@
                                 <td>{{ $user->id }}</td>    
                                 <td>{{ $user->name }}</td> 
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->status }}</td>
-                                <td>{{ $user->type }}</td>
+                                <td>
+                                    {{Form::select('status', 
+                                    array(
+                                            '1' => 'Active',
+                                            '0' => 'Inactive',
+                                          ), $user->status, array('class' => 'form-control', 'disabled'))
+                                    }}
+                                </td>
+                                <td>{{ ucfirst(trans($user->type)) }}</td>
                                 <td>
                                     <div class="btn-group btn-group-sm" role="group" aria-label="User List">
                                         <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Show</a>

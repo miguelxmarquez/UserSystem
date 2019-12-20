@@ -40,15 +40,9 @@ class UsersController extends Controller{
 
     public function update(Request $request, User $user){
         
-        $data = $request->all();
-        //dd($data);
-        dd($data);
-        
-        // $user->save();
-        // $user->name()->update(['name' => 'Hardik']);
-
-
-        // Flash::warning('El usuario '. $user->type.' ha sido modificado de forma exitosa!');
+        $user->fill($request->all());
+        $user->save();
+        //Flash::warning('El usuario '. $user->type.' ha sido modificado de forma exitosa!');
         return redirect()->route('users.index');
     }
 

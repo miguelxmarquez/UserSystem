@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{-- @section('title', 'Editar Usuario '. $user->name) --}}
+@section('title', 'Editar Usuario '. $user->name)
 
 @section('content')
 
@@ -12,13 +12,13 @@
               <div class="card-header">Edit User</div>
                   <div class="card-body">
 
-                    {{ Form::open( $user, ['action' => ['UsersController@update', $user->id],'method' => 'PUT']) }}
+                    <form action="{{ route('users.update', $user->id) }}" method="POST">
+                    {{-- {{ Form::model($user, ['url' => ['users', $user->id, 'update'],'method' => 'get']) }} --}}
 
                         @csrf
                         {{ method_field('PUT') }}
 
                         <div class="form-row">
-
                           <div class="form-group col-md-6">
                             {{ Form::label('name','Name') }}
                             {{ Form::text('name', $user->name, ['class'=> 'form-control', 'placeholder'=> 'Name', 'required']) }}
@@ -29,17 +29,15 @@
                             {{ Form::text('email', $user->email, ['class'=> 'form-control', 'placeholder'=> 'Email Address', 'required']) }}
                           </div>
                          
+                        </div>
+                        <div class="form-row">
                           <div class="form-group col-md-6">
                             {{ Form::label('password','Password') }}
-                            {{ Form::password('password', $user->password, ['class'=> 'form-control', 'placeholder'=> 'password Address', 'required']) }}
+                            {{ Form::text('password', $user->password, ['class'=> 'form-control password', 'placeholder'=> '********', 'required']) }}
                           </div>
-                         
-                        </div>
-
-                        <div class="form-row">
-
                           <div class="form-group col-md-6">
-                            {{ Form::label('type','Type') }}
+
+                            <label for="type">Role</label>
                             {{Form::select('type', 
                                   array(
                                           'master' => 'Master', 
@@ -63,16 +61,16 @@
                                   array(
                                           '1' => 'Active',
                                           '0' => 'Inactive',
-                                        ), $user->type, array('class' => 'form-control'))
+                                        ), $user->status, array('class' => 'form-control'))
                             }}
                           </div>
-                          
                         </div>
                         
                         <button type="submit" class="btn btn-primary float-right">Update</button>
                         <a href="{{ URL::previous() }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
 
-                    {{ Form::close() }}
+                    {{-- {{ Form::close() }} --}}
+                  </form>
                    </div>
                </div>
            </div>
