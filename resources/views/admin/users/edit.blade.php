@@ -12,11 +12,7 @@
               <div class="card-header">Edit User</div>
                   <div class="card-body">
 
-                    <form action="{{ route('users.update', $user->id) }}" method="POST">
-                    {{-- {{ Form::model($user, ['url' => ['users', $user->id, 'update'],'method' => 'get']) }} --}}
-
-                        @csrf
-                        {{ method_field('PUT') }}
+                       {{ Form::open(array('url' => 'admin/users/'.$user->id, 'method' => 'PUT', 'class'=>'col-md-12')) }}
 
                         <div class="form-row">
                           <div class="form-group col-md-6">
