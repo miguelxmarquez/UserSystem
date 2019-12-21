@@ -43,7 +43,7 @@ class UsersController extends Controller{
         $user->fill($request->all());
         $user->save();
         //Flash::warning('El usuario '. $user->type.' ha sido modificado de forma exitosa!');
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
     public function store(Request $request){
@@ -62,7 +62,7 @@ class UsersController extends Controller{
         $user = User::findorfail($id);
         $user->delete();
         //Flash::error('El usuario'. $user->name.'ha sido eliminado exitosamente!');
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('error', 'User deleted successfully');
     }
 
 
