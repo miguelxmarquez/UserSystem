@@ -66,8 +66,11 @@
                         <a href="{{ URL::previous() }}" class="btn btn-danger"><span class="glyphicon glyphicon-wrench" aria-hidden="true">Back</a>
 
                         </form>
-                   </div>
-               </div>
+                   </div> 
+                   <div class="card-footer text-muted">
+                    
+                  </div>
+               </div>     
            </div>
        </div>
     </div>

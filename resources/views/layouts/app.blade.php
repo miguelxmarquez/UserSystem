@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="sweetalert2.min.js"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="sweetalert2.min.css"> --}}
+
 </head>
 <body>
     <div id="app">
@@ -71,11 +74,15 @@
         </nav>
 
         <main class="py-4">
-          <div class="container-fluid">
 
-            <div class="container">
+          <div class="container-fluid">
+            
+            {{-- SweetAlert2 --}}
+            @include('sweetalert::alert')
+
+            {{-- <div class="container">
                 @include('flash-message')
-            </div>
+            </div> --}}
 
             @yield('content')
           </div>

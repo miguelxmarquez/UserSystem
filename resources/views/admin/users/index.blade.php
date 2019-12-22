@@ -57,7 +57,19 @@
                     </div>
                     
                 </div>
+                <div class="card-footer text-muted">
+                    
+                </div>
             </div>
         </div>
     </div>
+
+    <script> 
+        swal({
+            "timer":1800,
+            "title":"Título",
+            "text":"Notificación Básica",
+            "showConfirmButton":false
+        });
+    </script>
 @endsection

@@ -64,6 +64,9 @@
 
                                 
                             </div>
+                            <div class="card-footer text-muted">
+                    
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -71,4 +74,5 @@
         </div>
     </div>
 </div>
+@include('sweetalert::alert')
 @endsection

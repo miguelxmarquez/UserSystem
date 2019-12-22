@@ -68,6 +68,9 @@
                     {{-- {{ Form::close() }} --}}
                   </form>
                    </div>
+                   <div class="card-footer text-muted">
+                    
+                  </div>
                </div>
            </div>
        </div>

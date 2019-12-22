@@ -25,12 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
             'as'   => 'admin.users.destroy'
         ]);
     });
-
-    // Route::get('users/{id}/update',[
-    //         'uses' => 'UsersController@update',
-    //         'as'   => 'admin.users.update'
-    //     ]);
-     });
+});
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){

@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
 
             if($users->type == 'model'){
                 //
-                return redirect('/home');
+                return redirect('/');
             }else{
                 return redirect('/admin/users');
             }

@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Alert;
 
 class UsersController extends Controller{
     
@@ -17,6 +19,14 @@ class UsersController extends Controller{
 
     public function index(){
         $users = User::orderBy('id','DESC')->paginate(5);
+
+        // if (session('success')) {
+        //     Alert::success('Success!', session('Success Message'));
+        // }
+        // if (session('error_,essage')) {
+        //     Alert::success('Error!', session('Error Message'));
+        // }
+
         return view('admin.users.index', ['users' => $users]); 
     }
 
@@ -39,30 +49,49 @@ class UsersController extends Controller{
     }
 
     public function update(Request $request, User $user){
-        
+
         $user->fill($request->all());
         $user->save();
-        //Flash::warning('El usuario '. $user->type.' ha sido modificado de forma exitosa!');
+
         return redirect()->route('users.index')->with('success', 'User updated successfully');
     }
 
     public function store(Request $request){
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->type = $request->type;
-        $user->status = $request->status;
-        $user->password = bcrypt($request->password);
-        $user->save();
-        //Flash::success("Se ha guardado ".$user->name." de forma exitosa!");
-        return redirect()->route('users.index')->with('key', 'You have done successfully');
+
+        // $request->validate([
+        //     'name' => 'required|min:5',
+        //     'password' => 'required|min:8'
+        // ]);
+
+        $validator = Validator::make( $request->all(), [
+            'name' => 'required', 'min:5',
+            'email' => 'required', 'unique:users',
+            'password' => 'required', 'min:8',
+            'type' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('error', $validator->messages()->all()[0])->withInput();
+        }
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'type' => $request->type,
+            'status' => $request->status,
+            'password' => $request->password,
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'User saved successfully');
     }
 
     public function destroy($id){
         $user = User::findorfail($id);
         $user->delete();
-        //Flash::error('El usuario'. $user->name.'ha sido eliminado exitosamente!');
-        return redirect()->route('users.index')->with('error', 'User deleted successfully');
+        
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        
+        
     }
 
 

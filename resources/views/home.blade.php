@@ -14,15 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in!
-
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="card">
                                 <img src="https://www.w3schools.com/howto/img_avatar.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Users</h5>
-                                    <p class="card-text">Manage all your users in one place</p>
+                                    <p class="card-text">Manage all your users in one pretty place</p>
                                     <a href="admin/users" class="btn btn-info btn-lg my-2">Manage</a>
 
                                 </div>
@@ -53,9 +51,9 @@
                             </div>
                         </div>
                     </div>
-
-
-
+                </div>
+                <div class="card-footer text-muted">
+                    
                 </div>
             </div>
         </div>
