@@ -33,26 +33,13 @@
                           </div>
                           <div class="form-group col-md-6">
 
-                            <label for="type">Role</label>
-                            {{Form::select('type', 
-                                  array(
-                                          'master' => 'Master', 
-                                          'study' => 'Study', 
-                                          'sub-study' => 'Sub-study', 
-                                          'admin' => 'Admin', 
-                                          'manager' => 'Manager',
-                                          'accounts' => 'Accounts',
-                                          'monitor' => 'Monitor',
-                                          'model' => 'Model',
-                                          'design' => 'Design',
-                                          'photos' => 'Photos',
-                                          'shop' => 'Shop',
-                                        ), $user->type, array('class' => 'form-control'))
-                            }}
+                            <label for="role">Role</label>
+                            {{ Form::select('role', $roles, $user->role, array('class' => 'form-control')) }}
+
                           </div>
 
                           <div class="form-group col-md-6">
-                            <label for="type">Status</label>
+                            <label for="status">Status</label>
                             {{Form::select('status', 
                                   array(
                                           '1' => 'Active',

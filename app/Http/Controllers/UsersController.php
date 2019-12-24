@@ -19,15 +19,9 @@ class UsersController extends Controller{
 
     public function index(){
         $users = User::orderBy('id','DESC')->paginate(5);
-
-        // if (session('success')) {
-        //     Alert::success('Success!', session('Success Message'));
-        // }
-        // if (session('error_,essage')) {
-        //     Alert::success('Error!', session('Error Message'));
-        // }
-
-        return view('admin.users.index', ['users' => $users]); 
+        $roles = Role::orderBy('id','ASC')->pluck('name', 'id');
+       
+        return view('admin.users.index', ['users' => $users, 'roles' => $roles]); 
     }
 
     public function create(){
@@ -40,12 +34,16 @@ class UsersController extends Controller{
 
     public function show($id){
           $user = User::findOrFail($id);
-          return view('admin.users.profile', ['user' => $user]);
+          $roles = Role::orderBy('id','ASC')->pluck('name', 'id');
+        
+          return view('admin.users.profile', ['user' => $user, 'roles' => $roles]);
     }
 
     public function edit($id){
         $user = User::find($id);
-        return view('admin.users.edit', ['user' => $user]);
+        $roles = Role::orderBy('id','ASC')->pluck('name', 'id');
+
+        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update(Request $request, User $user){
@@ -67,7 +65,7 @@ class UsersController extends Controller{
             'name' => 'required', 'min:5',
             'email' => 'required', 'unique:users',
             'password' => 'required', 'min:8',
-            'type' => 'required'
+            'role' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -77,7 +75,7 @@ class UsersController extends Controller{
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'type' => $request->type,
+            'role' => $request->role,
             'status' => $request->status,
             'password' => $request->password,
         ]);

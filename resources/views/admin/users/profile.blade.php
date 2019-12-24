@@ -31,22 +31,8 @@
                           <div class="form-group col-md-6">
 
                             <label for="disabledSelect">Role</label>
-                            {{Form::select('type', 
-                                  array(
-                                          'master' => 'Master', 
-                                          'study' => 'Study', 
-                                          'sub-study' => 'Sub-study', 
-                                          'admin' => 'Admin', 
-                                          'manager' => 'Manager',
-                                          'accounts' => 'Accounts',
-                                          'monitor' => 'Monitor',
-                                          'model' => 'Model',
-                                          'design' => 'Design',
-                                          'photos' => 'Photos',
-                                          'shop' => 'Shop',
-                                        ), 
-                                  $user->type, array('class' => 'form-control', 'disabled'))
-                            }}
+                            {{ Form::select('role', $roles, $user->role, array('class' => 'form-control',  'disabled')) }}
+
                           </div>
                           <div class="form-group col-md-6">
 

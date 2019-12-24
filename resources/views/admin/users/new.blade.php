@@ -60,7 +60,7 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                    {{ Form::select('type', $roles, '', array('class' => 'form-control form-group col-md-6')) }}
+                                    {{ Form::select('role', $roles, '', array('class' => 'form-control form-group col-md-6')) }}
                             </div>
 
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>

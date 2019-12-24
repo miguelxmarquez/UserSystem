@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
 
             $table->boolean('status')->default('1');
-            $table->enum('type',['master','study', 'sub-study', 'admin', 'manager', 'accounts', 'monitor', 'model', 'design', 'photos', 'shop'])->default('model');
+            $table->bigInteger('role')->default('5');
 
             $table->softDeletes();
             $table->timestamps();
