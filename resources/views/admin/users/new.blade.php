@@ -60,23 +60,7 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                    {{Form::select('type', 
-                                          array(
-                                                  '' => 'Choose...', 
-                                                  'master' => 'Master', 
-                                                  'study' => 'Study', 
-                                                  'sub-study' => 'Sub-study', 
-                                                  'admin' => 'Admin', 
-                                                  'manager' => 'Manager',
-                                                  'accounts' => 'Accounts',
-                                                  'monitor' => 'Monitor',
-                                                  'model' => 'Model',
-                                                  'design' => 'Design',
-                                                  'photos' => 'Photos',
-                                                  'shop' => 'Shop',
-                                                ), 
-                                          '', array('class' => 'form-control form-group col-md-6'))
-                                    }}
+                                    {{ Form::select('type', $roles, '', array('class' => 'form-control form-group col-md-6')) }}
                             </div>
 
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
@@ -90,14 +74,7 @@
                                     }}
         
                             </div>
-                            
-                            {{-- @foreach ($roles as $role)
-                                <div class="form-check">
-                                <input type="checkbox" name="roles[]" value="{{ $role->id }}">
-                                <label>{{ $role->name }}</label>
-                                </div>
-                            @endforeach --}}
-
+                        
                         </div>
 
                         <div class="form-group row mb-0">

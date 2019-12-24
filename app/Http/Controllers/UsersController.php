@@ -31,8 +31,8 @@ class UsersController extends Controller{
     }
 
     public function create(){
-        $roles = Role::all();
-
+        $roles = Role::orderBy('id','ASC')->pluck('name', 'id');
+        
         return view('admin.users.new')->with([
             'roles' => $roles
          ]);  
