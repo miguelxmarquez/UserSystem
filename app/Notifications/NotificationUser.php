@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+
 class NotificationUser extends Notification
 {
     use Queueable;
@@ -38,16 +39,12 @@ class NotificationUser extends Notification
 
     public function toDatabase($notifiable)
     {
-       // dd($notifiable);
-    
+        
         return [
-
-           'amount' => 1000,
-           'invoice_action' => 'Pay Now...',
-
+            'id' => auth()->user()->id,
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
         ];
-     
-
 
     }
 
