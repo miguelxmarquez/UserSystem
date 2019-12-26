@@ -59,31 +59,29 @@ class UsersController extends Controller{
 
     public function store(Request $request){
 
-        // $request->validate([
-        //     'name' => 'required|min:5',
-        //     'password' => 'required|min:8'
-        // ]);
-
-        $validator = Validator::make( $request->all(), [
-            'name' => 'required', 'min:5',
-            'email' => 'required', 'unique:users',
-            'password' => 'required', 'min:8',
-            'role' => 'required'
+        $request->validate([
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8'
         ]);
 
-        if ($validator->fails()) {
-            return back()->with('error', $validator->messages()->all()[0])->withInput();
+        try {
+
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => $request->role,
+                'status' => $request->status,
+                'password' => $request->password,
+            ]);
+            return redirect()->route('users.index')->with('success', 'User saved successfully');
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->route('users.index')->with('error', 'User cant saved, try later');
+
         }
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => $request->role,
-            'status' => $request->status,
-            'password' => $request->password,
-        ]);
-
-        return redirect()->route('users.index')->with('success', 'User saved successfully');
     }
 
     public function destroy($id){
