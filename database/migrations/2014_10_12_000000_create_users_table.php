@@ -21,8 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
+            $table->string('notification_preference')->default('database');
+
             $table->boolean('status')->default('1');
-            $table->bigInteger('role')->default('5');
+            $table->bigInteger('role')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

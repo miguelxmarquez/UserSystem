@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-// use Caffeinated\Shinobi\Concerns\HasRolesAndPermissions;
-// use Cviebrock\EloquentSluggable\Sluggable;
+
 
 class User extends Authenticatable
 {
   
     protected $fillable = [
-        'id', 'name', 'email', 'password', 'status', 'type'
+        'id', 'name', 'email', 'password', 'status', 'role'
     ];
    
     protected $hidden = [
