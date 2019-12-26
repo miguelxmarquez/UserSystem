@@ -46,9 +46,9 @@ class RolesTableSeeder extends Seeder
         $slug[8]= 'design';
         $description[8]= 'Design Role';
 
-        $name[9]= 'shop';
+        $name[9]= 'Shop';
         $slug[9]= 'shop';
-        $description[9]= 'shop';
+        $description[9]= 'Shop Role';
 
                  for ($i=1;$i<=9; $i++){
                      DB::table('roles')->insert([
