@@ -8,6 +8,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\NotificationUser;
 use Alert;
 
 class UsersController extends Controller{
@@ -49,6 +50,8 @@ class UsersController extends Controller{
     public function update(Request $request, User $user){
 
         $user->fill($request->all());
+        $user->notify(new NotificationUser());
+
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
