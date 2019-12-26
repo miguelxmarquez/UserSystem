@@ -1,10 +1,10 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\User;
+use App\Role;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\Models\Role::class, function (Faker $faker) {
    
     return [
             'name' => $faker->name,

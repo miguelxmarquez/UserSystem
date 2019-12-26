@@ -14,7 +14,52 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Role::class, 6)->create();
-        
+        $name[1]= 'Admin';
+        $slug[1]= 'admin';
+        $description[1]= 'Admininstrator Role';     
+ 
+        $name[2]= 'Study';
+        $slug[2]= 'study';
+        $description[2]= 'Study Role';     
+ 
+        $name[3]= 'Sub-study';
+        $slug[3]= 'sub-study';
+        $description[3]= 'Sub-Study Role';
+
+        $name[4]= 'Manager';
+        $slug[4]= 'manager';
+        $description[4]= 'Manager Role';
+
+        $name[5]= 'Accounts';
+        $slug[5]= 'accounts';
+        $description[5]= 'Accounts Role';
+
+        $name[6]= 'Monitor';
+        $slug[6]= 'monitor';
+        $description[6]= 'Monitor Role';
+
+        $name[7]= 'Model';
+        $slug[7]= 'model';
+        $description[7]= 'Model Role';
+
+        $name[8]= 'Design';
+        $slug[8]= 'design';
+        $description[8]= 'Design Role';
+
+        $name[9]= 'shop';
+        $slug[9]= 'shop';
+        $description[9]= 'shop';
+
+                 for ($i=1;$i<=9; $i++){
+                     DB::table('roles')->insert([
+
+                        'id' => $i,
+                        'name' => $name[$i],
+                        'slug' => $slug[$i],
+                        'description'=> $description[$i],
+
+                      ]);
+
+                  }        
     }
 }
